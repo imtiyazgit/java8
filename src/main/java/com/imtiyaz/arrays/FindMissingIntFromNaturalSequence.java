@@ -3,7 +3,7 @@ package com.imtiyaz.arrays;
 /**
  * Created by imtiyaz on 7/20/17.
  */
-public class FindMissingElementInArray {
+public class FindMissingIntFromNaturalSequence {
     public static void main(String[] args) {
         int[] arr = {1,2,3,5};
         int length = arr.length+1;

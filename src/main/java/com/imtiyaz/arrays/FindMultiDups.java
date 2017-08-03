@@ -6,7 +6,20 @@ import java.util.*;
  * Created by imtiyaz on 7/21/17.
  */
 public class FindMultiDups {
-    /*public static void main(String[] args) {
+
+    public static void main(String[] args) {
+        int[] arr = {2,5,6,4,5,1,2};
+
+        for (int i = 0; i < arr.length; i++) {
+            for(int j=0; j<i; j++) {
+                if (arr[i] == arr[j]) {
+                    System.out.println("dup found "+arr[i]);
+                }
+            }
+        }
+    }
+
+    public static void main4(String[] args) {
         int[] arr = {2,5,6,4,5,1,2};
 
         for (int i = 0; i < arr.length; i++) {
@@ -17,9 +30,9 @@ public class FindMultiDups {
                 }
             }
         }
-    }*/
+    }
 
-    /*public static void main(String[] args) {
+    public static void main2(String[] args) {
         int[] arr = {2,5,6,4,5,1,2};
 
         Set set = new HashSet();
@@ -29,9 +42,9 @@ public class FindMultiDups {
                 System.out.println("Dup "+arr[i]);
             }
         }
-    }*/
+    }
 
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         int[] arr = {3, 2, 3, 4, 3, 5, 1, 2, 4, 7};
         Map<Integer, Integer> results = new HashMap<Integer, Integer>();
 
