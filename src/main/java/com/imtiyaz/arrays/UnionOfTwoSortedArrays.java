@@ -12,6 +12,9 @@ public class UnionOfTwoSortedArrays {
         int[] result = new int[arr1.length + arr2.length];
 
         int i = 0, j=0, index=0;
+
+        // If arr1 element is less than array2 element, add arr1 element and then increment i
+        // If arr1 element is greater than array2 element, add arr2 element and then increment j
         while (i < arr1.length && j < arr2.length) {
             if (arr1[i] < arr2[j]) {
                 result[index++] = arr1[i++];
@@ -25,6 +28,7 @@ public class UnionOfTwoSortedArrays {
             }
         }
 
+        //so by now, result array should have sorted upto the elements of lesser array.. Hence add the elements of other
         while(i < arr1.length) {
             result[index++] = arr1[i++];
         }
