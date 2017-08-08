@@ -18,12 +18,9 @@ public class UnionOfTwoSortedArrays {
         while (i < arr1.length && j < arr2.length) {
             if (arr1[i] < arr2[j]) {
                 result[index++] = arr1[i++];
-                continue;
             }  else if (arr1[i] > arr2[j]){
                 result[index++] = arr2[j++];
             } else {
-                // if elements are same
-                result[index++] = arr1[i];
                 i++; j++;
             }
         }

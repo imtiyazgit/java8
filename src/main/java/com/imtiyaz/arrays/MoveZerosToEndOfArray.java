@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class MoveZerosToEndOfArray {
     public static void main(String[] args) {
-        int[] arr =  {3,0,4,1,0,7,0};
+        int[] arr =  {0,2,4,1,4,7};
 
         int j=0;
         for (int i = 0; i < arr.length; i++) {
@@ -16,7 +16,7 @@ public class MoveZerosToEndOfArray {
             }
         }
 
-        for(int k=j+1; k<arr.length;k++) {
+        for(int k=j; k<arr.length;k++) {
             arr[k] = 0;
         }
 
