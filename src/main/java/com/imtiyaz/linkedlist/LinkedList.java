@@ -23,18 +23,57 @@ public class LinkedList {
         return length;
     }
 
-    public int findMiddle() {
+    public Node findMiddle() {
         Node current = head;
-        int j=0;
-        for(int i=0; current != null; i++) {
-            if(i%2==0) {
-                j++;
+        Node middle = head;
+        int length=0;
+        while(current != null) {
+            length++;
+            if(length%2 ==0) {
+                middle = middle.getNextNode();
             }
             current = current.getNextNode();
         }
-        return j;
+        return middle;
     }
 
+    public Node findMiddle2() {
+        Node fast = head;
+        Node slow = head;
+        while(fast!=null && fast.getNextNode()!=null) {
+            slow = slow.getNextNode();
+            fast = fast.getNextNode().getNextNode();
+        }
+        return slow;
+    }
+
+    // {[2],[3],[4],[5],[6],[7],[8],[9],}
+    public Node delete(int position) {
+        int size = length();
+        if(position>size || position < 1) {
+            System.out.println("Invalid Position");
+            return head;
+        }
+
+        Node previous = head;
+        int length = 1;
+
+        if(position==1){
+            Node temp = head;
+            head = head.getNextNode();
+            return temp;
+        }
+
+        while(length < position-1){
+            length++;
+            previous = previous.getNextNode();
+        }
+
+        Node current = previous.getNextNode();
+        Node next = current.getNextNode();
+        previous.setNextNode(next);
+        return current;
+    }
 
     public void deleteHeadNode() {
         head = head.getNextNode();

@@ -16,9 +16,10 @@ public class LinkedListDemo {
         linkedList.insertAtHead(2);
         linkedList.insertAtHead(1);
 
+        System.out.println("Middle" + linkedList.findMiddle2());
         System.out.println(linkedList);
 
-        System.out.println("Found"+linkedList.find(2));
+        System.out.println("Found" + linkedList.find(2));
 
         linkedList.deleteHeadNode();
 
@@ -26,7 +27,10 @@ public class LinkedListDemo {
 
         System.out.println(linkedList.length());
 
-        System.out.println(linkedList.findMiddle());
+
+        System.out.println(linkedList);
+        System.out.println("Deleting - "+linkedList.delete(10));
+        System.out.println(linkedList);
 
 
     }
