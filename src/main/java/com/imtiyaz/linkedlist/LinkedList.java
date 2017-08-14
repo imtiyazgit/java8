@@ -75,6 +75,39 @@ public class LinkedList {
         return current;
     }
 
+    // 2 1 3 4 5 6
+    public Node reverseUsingIteration() {
+        Node previous = null;
+        Node current = head;
+        Node next = head;
+        while(current!=null){
+            head = current;
+            next = current.getNextNode();
+            current.setNextNode(previous);
+            previous = current;
+            current = next;
+        }
+        return head;
+    }
+
+    public Node reverseFromHead() {
+        head = reverseUsingRecursion(head);
+        return head;
+    }
+
+    // 2 1 3 4 5 6
+    public Node reverseUsingRecursion(Node node) {
+        Node newHead;
+        if(node.getNextNode() == null) {
+            return node;
+        }
+
+        newHead = reverseUsingRecursion(node.getNextNode());
+        node.getNextNode().setNextNode(node);
+        node.setNextNode(null);
+        return newHead;
+    }
+
     public void deleteHeadNode() {
         head = head.getNextNode();
     }

@@ -32,6 +32,11 @@ public class LinkedListDemo {
         System.out.println("Deleting - "+linkedList.delete(10));
         System.out.println(linkedList);
 
+        linkedList.reverseUsingIteration();
+        System.out.println(linkedList);
+
+        linkedList.reverseFromHead();
+        System.out.println("Reverse recurse"+linkedList);
 
     }
 }
