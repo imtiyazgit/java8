@@ -39,6 +39,23 @@ public class LinkedList<T> {
         head=previous;
     }
 
+    public Node reverseUsingRecursion() {
+        head = reverseUsingRecursion(head);
+        return head;
+    }
+
+    //2 3 4 9 8 10 5
+    public Node reverseUsingRecursion(Node current) {
+        if(current == null || current.next == null) {
+            return current;
+        }
+
+        Node newHead = reverseUsingRecursion(current.next); // once newHead is set, just pass on to recursive methods of frames.. it doesnt change
+        current.next.next = current;
+        current.next = null;
+        return newHead;
+    }
+
     private static class Node<T> {
         private T data;
         private Node next;
@@ -81,8 +98,12 @@ public class LinkedList<T> {
         System.out.println(linkedList);
 
         // reverse using iteration
-        System.out.println("Using iteration");
+        System.out.println("Reverse Using iteration");
         linkedList.reverseUsingIteration();
+        System.out.println(linkedList);
+
+        System.out.println("Reverse using recursion");
+        linkedList.reverseUsingRecursion();
         System.out.println(linkedList);
     }
 }
