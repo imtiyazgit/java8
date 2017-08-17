@@ -56,6 +56,21 @@ public class LinkedList<T> {
         return newHead;
     }
 
+    //5 10 8 X 9 4 3 2
+    public void insertAtPosition(int position, int data) {
+        int length=1;
+        Node current=head;
+        while(length<position-1) {
+            current = current.next;
+            length++;
+        }
+
+        Node newNode = new Node(data);
+        Node next = current.next;
+        current.next = newNode;
+        newNode.next = next;
+    }
+
     private static class Node<T> {
         private T data;
         private Node next;
@@ -102,8 +117,14 @@ public class LinkedList<T> {
         linkedList.reverseUsingIteration();
         System.out.println(linkedList);
 
+        // reverse using recursion
         System.out.println("Reverse using recursion");
         linkedList.reverseUsingRecursion();
+        System.out.println(linkedList);
+
+        // insert at a specific position
+        System.out.println("Inserting at 4 value 11");
+        linkedList.insertAtPosition(4, 11);
         System.out.println(linkedList);
     }
 }
