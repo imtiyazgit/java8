@@ -25,6 +25,20 @@ public class LinkedList<T> {
     }
 
 
+    //5 10 8 9 4 3 2
+    public void reverseUsingIteration() {
+        Node previous = null;
+        Node current = head;
+        Node next;
+        while (current!=null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        head=previous;
+    }
+
     private static class Node<T> {
         private T data;
         private Node next;
@@ -64,6 +78,11 @@ public class LinkedList<T> {
 
         System.out.println("Delete head");
         linkedList.deleteHead();
+        System.out.println(linkedList);
+
+        // reverse using iteration
+        System.out.println("Using iteration");
+        linkedList.reverseUsingIteration();
         System.out.println(linkedList);
     }
 }
