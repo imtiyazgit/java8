@@ -4,10 +4,11 @@ public class LinkedList<T> {
 
     private Node<T> head;
 
-    public void insertAtHead(T data) {
+    public Node insertAtHead(T data) {
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
+        return head;
     }
 
     public void deleteHead() {
@@ -56,6 +57,18 @@ public class LinkedList<T> {
         return newHead;
     }
 
+    // No need to have this method. This method is created just for creating a loop.
+    public void createLoopAtEnd(Node newNode) {
+        Node current=head;
+        Node lastNode = head;
+        while(current != null) {
+            lastNode = current;
+            current = current.next;
+        }
+
+        lastNode.next = newNode;
+    }
+
     //5 10 8 X 9 4 3 2
     public void insertAtPosition(int position, int data) {
         int length=1;
@@ -69,6 +82,21 @@ public class LinkedList<T> {
         Node next = current.next;
         current.next = newNode;
         newNode.next = next;
+    }
+
+    // 1 2 3 4 5 2
+    public boolean detectLoop() {
+        Node fast = head;
+        Node slow = head;
+
+        while(fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if(fast == slow) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static class Node<T> {
@@ -100,13 +128,13 @@ public class LinkedList<T> {
         linkedList.insertAtHead(2);
         linkedList.insertAtHead(3);
         linkedList.insertAtHead(4);
-        linkedList.insertAtHead(9);
+        Node node9 = linkedList.insertAtHead(9);
         linkedList.insertAtHead(8);
         linkedList.insertAtHead(10);
         linkedList.insertAtHead(5);
         linkedList.insertAtHead(7);
 
-        System.out.println(linkedList +" and size is "+linkedList.size());
+        System.out.println(linkedList + " and size is " + linkedList.size());
 
         System.out.println("Delete head");
         linkedList.deleteHead();
@@ -126,5 +154,11 @@ public class LinkedList<T> {
         System.out.println("Inserting at 4 value 11");
         linkedList.insertAtPosition(4, 11);
         System.out.println(linkedList);
+
+        // create a loop of 9 4 3 2 9
+        System.out.println("Creating a loop at end 5 10 8 11 9 4 3 2 9");
+        linkedList.createLoopAtEnd(node9);
+        System.out.println("Is loop exists: " + linkedList.detectLoop());
+        System.exit(1);
     }
 }
