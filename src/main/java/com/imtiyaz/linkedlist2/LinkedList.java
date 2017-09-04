@@ -1,5 +1,7 @@
 package com.imtiyaz.linkedlist2;
 
+import java.util.Stack;
+
 public class LinkedList<T> {
 
     private Node<T> head;
@@ -99,6 +101,27 @@ public class LinkedList<T> {
         return false;
     }
 
+    // 1 2 3 2 1
+    // 1 2 3 3 2 1
+    public boolean isPalindrome() {
+        Node current = head;
+        Node runner = head;
+        Stack stack = new Stack();
+        while(runner != null && runner.next != null) {
+            stack.push(current.data);
+            current = current.next;
+            runner = runner.next.next;
+        }
+
+        if(runner != null) current = current.next;
+
+        if(current != null) {
+            if (current.data != stack.pop()) return false;
+            current = current.next;
+        }
+        return true;
+    }
+
     private static class Node<T> {
         private T data;
         private Node next;
@@ -123,7 +146,7 @@ public class LinkedList<T> {
         return "";
     }
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
         linkedList.insertAtHead(2);
         linkedList.insertAtHead(3);
@@ -160,5 +183,22 @@ public class LinkedList<T> {
         linkedList.createLoopAtEnd(node9);
         System.out.println("Is loop exists: " + linkedList.detectLoop());
         System.exit(1);
+    }
+
+
+
+    public static void main(String[] args) {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        linkedList.insertAtHead(1);
+        linkedList.insertAtHead(2);
+        linkedList.insertAtHead(3);
+        linkedList.insertAtHead(3);
+        linkedList.insertAtHead(2);
+        linkedList.insertAtHead(1);
+
+        // 1 2 3 2 1 palindrome forward and backward same numbers
+        System.out.println("isPalindrome "+linkedList.isPalindrome());
+
+
     }
 }
