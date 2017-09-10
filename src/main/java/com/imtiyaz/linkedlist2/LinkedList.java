@@ -124,7 +124,7 @@ public class LinkedList<T> {
         return true;
     }
 
-    //delete duplicates from this linked list
+    //delete duplicates from this linked list using extra storage
     public void dedup() {
         if(head == null) return;
         Node previous = null;
@@ -138,6 +138,26 @@ public class LinkedList<T> {
                 set.add(current.data);
                 previous = current;
             }
+            current = current.next;
+        }
+    }
+
+    // deleting linked list nodes with no extra space
+    public void dedupWithNoExtraSpace() {
+        Node current = head;
+        while(current != null) {
+            Node temp = current;
+
+            // Inner loop iterates from next element
+            while(temp.next != null) {
+                if(temp.next.data == current.data) {
+                    // if same, then skip or remove this node, by pointing current temp's-next to temp's-next-next
+                    temp.next = temp.next.next;
+                } else {
+                    temp = temp.next;
+                }
+            }
+
             current = current.next;
         }
     }
@@ -235,7 +255,8 @@ public class LinkedList<T> {
         linkedList.insertAtHead(1);
 
         // delete dups
-        linkedList.dedup();
+        //linkedList.dedup();
+        linkedList.dedupWithNoExtraSpace();
 
         System.out.println(linkedList);
     }
