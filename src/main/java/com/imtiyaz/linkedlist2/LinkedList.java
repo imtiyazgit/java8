@@ -1,5 +1,7 @@
 package com.imtiyaz.linkedlist2;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 public class LinkedList<T> {
@@ -122,6 +124,24 @@ public class LinkedList<T> {
         return true;
     }
 
+    //delete duplicates from this linked list
+    public void dedup() {
+        if(head == null) return;
+        Node previous = null;
+        Node current = head;
+        Set set = new HashSet();
+
+        while(current != null) {
+            if(set.contains(current.data)) {
+                previous.next = current.next;
+            } else {
+                set.add(current.data);
+                previous = current;
+            }
+            current = current.next;
+        }
+    }
+
     private static class Node<T> {
         private T data;
         private Node next;
@@ -187,7 +207,8 @@ public class LinkedList<T> {
 
 
 
-    public static void main(String[] args) {
+    // Palindrome
+    public static void main3(String[] args) {
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
         linkedList.insertAtHead(1);
         linkedList.insertAtHead(2);
@@ -200,5 +221,22 @@ public class LinkedList<T> {
         System.out.println("isPalindrome "+linkedList.isPalindrome());
 
 
+    }
+
+
+    // remove duplicates from linkedlist
+    public static void main(String[] args) {
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
+        linkedList.insertAtHead(1);
+        linkedList.insertAtHead(2);
+        linkedList.insertAtHead(3);
+        linkedList.insertAtHead(3);
+        linkedList.insertAtHead(2);
+        linkedList.insertAtHead(1);
+
+        // delete dups
+        linkedList.dedup();
+
+        System.out.println(linkedList);
     }
 }
